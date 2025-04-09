@@ -1,8 +1,10 @@
 import {BrowserRouter} from "react-router-dom";
+import React, { useState, useEffect} from "react";
 import "./menu.css";
 
 function Menu() {
 
+    const [activePopup, setActivePopup] = useState(null);
 
     return(
         <div className="menu-container">
@@ -15,7 +17,7 @@ function Menu() {
             <div className="menu-buttons">
 
                 <div className="menu-button-newgame">
-                    <input type="button" value="New Game"/>
+                    <input type="button" value="New Game" onClick={setActivePopup("newgame")}/>
                 </div>
 
                 <div className="menu-button-continue">
@@ -29,6 +31,16 @@ function Menu() {
                 <div className="menu-button-quit">
                     <input type="button" value="Quit"/>
                 </div>
+
+            </div>
+
+            <div className="menu-popups">
+
+                { activePopup === newgame && (
+                    <div className="menu-popup-newgame">
+                        <input type="t"/>
+                    </div>
+                )}
 
             </div>
 
