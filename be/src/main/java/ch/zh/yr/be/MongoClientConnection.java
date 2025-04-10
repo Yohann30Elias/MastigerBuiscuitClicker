@@ -13,7 +13,7 @@ import org.bson.Document;
 public class MongoClientConnection {
 
     public void connectToMongoDB() {
-        String connectionString = "";
+        String connectionString = "mongodb+srv://test:test@clusterbiscuit.l0mvcrm.mongodb.net/?retryWrites=true&w=majority&appName=ClusterBiscuit";
 
         ServerApi serverApi = ServerApi.builder()
                 .version(ServerApiVersion.V1)
@@ -26,13 +26,12 @@ public class MongoClientConnection {
 
         try (MongoClient mongoClient = MongoClients.create(settings)) {
             try {
-                MongoDatabase database = mongoClient.getDatabase("");  // Use your actual database name
+                MongoDatabase database = mongoClient.getDatabase("BiscuitGame");
                 database.runCommand(new Document("ping", 1));
                 System.out.println("Pinged your deployment. You successfully connected to MongoDB!");
             } catch (MongoException e) {
                 e.printStackTrace();
             }
         }
-
     }
 }
