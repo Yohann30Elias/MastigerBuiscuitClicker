@@ -8,6 +8,7 @@
     align-items: center;
     justify-content: center;
     font-family: 'Comic Sans MS', cursive, sans-serif;
+    position: relative;
 }
 
 .menu-welcome {
@@ -35,7 +36,7 @@
 .menu-button-newgame,
 .menu-button-continue,
 .menu-button-settings,
-.menu-button-quit {
+.menu-button-leaderboard {
     display: flex;
     justify-content: center;
 }
@@ -57,33 +58,47 @@
     background-color: #a0522d;
 }
 
-.popup-overlay {
+/* Popup container */
+.menu-popups {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
+    pointer-events: none;
 }
 
-.popup-content {
+/* Gemeinsames Popup-Styling */
+.menu-popup-newgame,
+.menu-popup-settings,
+.menu-popup-leaderboard {
     background: #fff8dc;
-    padding: 30px;
     border-radius: 12px;
-    text-align: center;
+    padding: 30px;
     box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    text-align: center;
+    z-index: 10;
+    pointer-events: all;
+    animation: fadeIn 0.2s ease-in-out;
 }
 
-.popup-content h2 {
-    margin-bottom: 20px;
-    color: #5c3a1e;
+/* Popup speziell für newgame – listige Darstellung */
+.menu-popup-newgame {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    min-width: 250px;
 }
 
-.popup-content button {
-    margin: 10px;
+/* Buttons in Popups */
+.menu-popup-newgame input[type="button"],
+.menu-popup-settings input[type="button"],
+.menu-popup-leaderboard input[type="button"] {
+    width: 200px;
     padding: 10px 20px;
     background-color: #8b5a2b;
     color: white;
@@ -94,6 +109,20 @@
     transition: background-color 0.3s;
 }
 
-.popup-content button:hover {
+.menu-popup-newgame input[type="button"]:hover,
+.menu-popup-settings input[type="button"]:hover,
+.menu-popup-leaderboard input[type="button"]:hover {
     background-color: #a0522d;
+}
+
+/* Optional: einfache Fade-in-Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
