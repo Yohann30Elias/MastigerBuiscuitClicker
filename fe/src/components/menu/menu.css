@@ -115,6 +115,46 @@
     background-color: #a0522d;
 }
 
+.menu-popup-create-game {
+    background: #fff8dc;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    text-align: center;
+    z-index: 10;
+    pointer-events: all;
+    animation: fadeIn 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-width: 250px;
+}
+
+.menu-popup-create-game input[type="text"],
+.menu-popup-create-game input[type="button"] {
+    width: 200px;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: none;
+}
+
+.menu-popup-create-game input[type="text"] {
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+.menu-popup-create-game input[type="button"] {
+    background-color: #8b5a2b;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.menu-popup-create-game input[type="button"]:hover {
+    background-color: #a0522d;
+}
+
 /* Optional: einfache Fade-in-Animation */
 @keyframes fadeIn {
     from {

@@ -1,14 +1,21 @@
-import {BrowserRouter} from "react-router-dom";
+import axios from "axios";
 import React, { useState, useEffect} from "react";
 import "./menu.css";
 
 function Menu() {
 
     const [activePopup, setActivePopup] = useState(null);
+    const [username, setUsername] = useState("")
 
     const createGame = () => {
-
-    }
+        const data = axios.post("http://localhost:8080/api/users/createGame", {
+            name: username
+        }).then( res => {
+            console.log("user created", res.data);
+        }).catch( err => {
+            console.log("Fehler beim erstellen", err);
+        });
+    };
 
     const continueGame = () => {
 
@@ -52,9 +59,9 @@ function Menu() {
                 { activePopup === "newgame" && (
                     <div className="menu-popup-newgame">
                         <h2>Wähle ein ein Freien Spielstand um ein Siel zu erstellen oder Klicke auf einen Bisherigen um das SPiel Fortzusetzen</h2>
-                        <input type="button" value="game 1 placeholder"/>
-                        <input type="button" value="game 2 placeholder"/>
-                        <input type="button" value="game 3 placeholder"/>
+                        <input type="button" value="game 1 placeholder" onClick={() => [setActivePopup("creategame")]}/>
+                        <input type="button" value="game 2 placeholder" onClick={() => [setActivePopup("creategame")]}/>
+                        <input type="button" value="game 3 placeholder" onClick={() => [setActivePopup("creategame")]}/>
                         <input type="button" value="zurück" onClick={() => {setActivePopup(null)}}/>
                     </div>
                 )}
@@ -72,6 +79,17 @@ function Menu() {
                         <h2>Leaderboard</h2>
                         <p>du halt ned</p>
                         <input type="button" value="zurück" onClick={() => {setActivePopup(null)}}/>
+                    </div>
+                )}
+
+                { activePopup === "creategame" && (
+                    <div className="menu-popup-create-game">
+                        <form onSubmit={(e) => e.preventDefault()}>
+                            <h2>Erstelle dein Profil</h2>
+                            <input type="text" value="SpielerName" value={username} onChange={(e) => setUsername(e.target.value)}/>
+                            <input type="button" value="Erstellen" onClick={createGame}/>
+                        </form>
+
                     </div>
                 )}
 
